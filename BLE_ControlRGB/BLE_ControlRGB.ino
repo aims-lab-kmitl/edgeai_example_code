@@ -22,20 +22,15 @@ void loop(){
   if(central){
     while(central.connect()){
       if(kmitlBLE.checkControl()){
-        digitalWrite(LEDR, HIGH);
-        digitalWrite(LEDG, HIGH);
-        digitalWrite(LEDB, HIGH);
-        switch(kmitlBLE.getControl()){
-          case 01:  digitalWrite(LEDR, LOW);
-                    break;
-          case 02:  digitalWrite(LEDG, LOW);
-                    break;
-          case 03:  digitalWrite(LEDB, LOW);
-                    break;
-          default:  digitalWrite(LEDR, HIGH);
-                    digitalWrite(LEDG, HIGH);
-                    digitalWrite(LEDB, HIGH);
-                    break;
+        if(kmitlBLE.getControl() == 1){
+          digitalWrite(LEDR, LOW);
+          digitalWrite(LEDG, HIGH);
+          digitalWrite(LEDB, HIGH);
+        }
+        else{
+          digitalWrite(LEDR, HIGH);
+          digitalWrite(LEDG, HIGH);
+          digitalWrite(LEDB, HIGH);
         }
       }
     }
